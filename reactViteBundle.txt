@@ -1,0 +1,113 @@
+import { defineConfig } from 'vite';
+import reactRefresh from '@vitejs/plugin-react-refresh';
+
+export default defineConfig({
+  plugins: [reactRefresh()],
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        index: './src/index.js',
+        about: './src/about.js',
+        contact: './src/contact.js',
+      }
+    }
+  }
+});
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Page</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+vue
+
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+
+export default defineConfig({
+  plugins: [vue()],
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+ 
+        index: './src/main.js',
+        about: './src/about.js',
+        contact: './src/contact.js',
+      }
+    }
+  }
+});
+
+import { createApp } from 'vue';
+import App from './App.vue';
+
+createApp(App).mount('#app');
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Page</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>
+
+
+NEWWW___
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import fs from 'fs';
+import path from 'path';
+
+export default defineConfig({
+  plugins: [vue()],
+  build: {
+    outDir: 'dist', 
+    rollupOptions: {
+      input: getInputEntries('./src/pages'), 
+    },
+  },
+});
+
+function getInputEntries(pagesDir) {
+  const entries = {};
+  const files = fs.readdirSync(pagesDir);
+
+  files.forEach((file) => {
+    const name = path.parse(file).name;
+    entries[name] = path.resolve(pagesDir, file);
+  });
+
+  return entries;
+}
