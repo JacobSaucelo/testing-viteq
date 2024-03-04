@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import fs from "fs";
-import path from "path";
+import path, { resolve } from "path";
 import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
@@ -46,6 +46,8 @@ function getEntries() {
 //   emptyOutDir: true,
 //   rollupOptions:{
 //     input: {
+// resolve(__dirname, "src/tis.testRouteCode/main.js"),
+//   resolve(__dirname, "src/tis.testRouteTemplates/main.js");
 
 //     }
 //   }
